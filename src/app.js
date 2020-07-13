@@ -71,8 +71,8 @@ let run = async function gsrun(cl) {
 		resource: { values: commercialBr },
 	};
 
-	const resForPrNames = await gsapi.spreadsheets.values.update(updateOptionsForPrNames);
-	const resForCommercialBr = await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
+	await gsapi.spreadsheets.values.update(updateOptionsForPrNames);
+	await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
 };
 
 module.exports = run;
