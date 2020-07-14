@@ -7,11 +7,12 @@ const client = new google.auth.JWT(keys.client_email, null, keys.private_key, [
 
 const regExp = new RegExp(/^[A-Z]{4}/, 'g');
 
-let date = async function dayFetch(cl) {
+let getYYYmmDD = async function dayFetch(cl, sheetID, sheetName) {
 	const gsapi = google.sheets({ version: 'v4', auth: cl });
+
 	const opt = {
-		spreadsheetId: '1f5AVKAXjVkLgaJbOCWwFz7i63uz0gKgD0hBJHuGG-hM',
-		range: 'Data!B60',
+		spreadsheetId: sheetID,
+		range: sheetName + '!B60',
 	};
 	const rawData = await gsapi.spreadsheets.values.get(opt);
 	const mediumData = rawData.data.values;
@@ -19,12 +20,12 @@ let date = async function dayFetch(cl) {
 	return mediumData[0][0];
 };
 
-let run = async function gsrun(cl) {
+let getDataFromSpreadSheet = async function gsrun(cl, sheetID, sheetName) {
 	const gsapi = google.sheets({ version: 'v4', auth: cl });
 
 	const opt = {
-		spreadsheetId: '1f5AVKAXjVkLgaJbOCWwFz7i63uz0gKgD0hBJHuGG-hM',
-		range: 'Data!B1:F55',
+		spreadsheetId: sheetID,
+		range: sheetName + '!B1:F55',
 	};
 
 	const rawData = await gsapi.spreadsheets.values.get(opt);
@@ -36,4 +37,4 @@ let run = async function gsrun(cl) {
 	return mediumData;
 };
 
-module.exports = { run, date };
+module.exports = { getYYYmmDD, getDataFromSpreadSheet };

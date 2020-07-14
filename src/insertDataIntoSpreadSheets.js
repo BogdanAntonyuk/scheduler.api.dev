@@ -4,12 +4,12 @@ const updateDescription = require('./utils/updateDescription.js');
 
 const regExp = new RegExp(/^[A-Z]{4}/, 'g');
 
-let run = async function gsrun(cl) {
+let insertDataFromDB2YourHopeIntoSpreadSheet = async function gsrun(cl, sheetID, sheetName) {
 	const gsapi = google.sheets({ version: 'v4', auth: cl });
 
 	const opt = {
-		spreadsheetId: '1f5AVKAXjVkLgaJbOCWwFz7i63uz0gKgD0hBJHuGG-hM',
-		range: 'Data!B1:B55',
+		spreadsheetId: sheetID,
+		range: sheetName + '!B1:B55',
 	};
 	let prNames = [];
 	let fetchedData = [];
@@ -58,15 +58,15 @@ let run = async function gsrun(cl) {
 	}
 
 	const updateOptionsForPrNames = {
-		spreadsheetId: '1f5AVKAXjVkLgaJbOCWwFz7i63uz0gKgD0hBJHuGG-hM',
-		range: 'Data!D1',
+		spreadsheetId: sheetID,
+		range: sheetName + '!D1',
 		valueInputOption: 'USER_ENTERED',
 		resource: { values: prNames },
 	};
 
 	const updateOptionsForCommercialBr = {
-		spreadsheetId: '1f5AVKAXjVkLgaJbOCWwFz7i63uz0gKgD0hBJHuGG-hM',
-		range: 'Data!A1',
+		spreadsheetId: sheetID,
+		range: sheetName + '!A1',
 		valueInputOption: 'USER_ENTERED',
 		resource: { values: commercialBr },
 	};
@@ -75,4 +75,4 @@ let run = async function gsrun(cl) {
 	await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
 };
 
-module.exports = run;
+module.exports = insertDataFromDB2YourHopeIntoSpreadSheet;
