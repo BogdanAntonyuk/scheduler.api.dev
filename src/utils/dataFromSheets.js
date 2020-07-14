@@ -5,7 +5,7 @@ const client = new google.auth.JWT(keys.client_email, null, keys.private_key, [
 	'https://www.googleapis.com/auth/spreadsheets',
 ]);
 
-const regExp = new RegExp(/^[A-Z]{4}/, 'g');
+// const regExp = new RegExp(/^[A-Z]{4}/, 'g');
 
 let getYYYmmDD = async function dayFetch(cl, sheetID, sheetName) {
 	const gsapi = google.sheets({ version: 'v4', auth: cl });
