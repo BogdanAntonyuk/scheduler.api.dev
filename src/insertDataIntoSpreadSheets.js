@@ -79,12 +79,22 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
   await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
 }
 
+function setCharAt(str, index, chr) {
+  if (index > str.length - 1) return str;
+  return str.substr(0, index) + chr + str.substr(index + 1);
+}
+
 async function fetchAfterEdit(sheetID, sheetName, range) {
+  let row = '';
+  let rows = '';
   const opt = {
     spreadsheetId: sheetID,
     range: sheetName + '!' + range,
   };
-  const row = range.slice(1);
+  if (range.length > 3) {
+    rows = range.split(':');
+  } else row = range.slice(1);
+
   let prNames = [];
   let fetchedData = [];
   let commercialBr = [];
@@ -130,23 +140,47 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
       );
     }
   }
+  if (row == '') {
+    let rangeForPr = [];
+    let rangeForBr = [];
+    for (i = 0; i < rows.length; i++) {
+      rangeForPr.push(setCharAt(rows[i], 0, 'D'));
+      rangeForBr.push(setCharAt(rows[i], 0, 'A'));
+    }
+    const updateOptionsForPrNames = {
+      spreadsheetId: sheetID,
+      range: sheetName + '!' + rangeForPr[0],
+      valueInputOption: 'USER_ENTERED',
+      resource: { values: prNames },
+    };
 
-  const updateOptionsForPrNames = {
-    spreadsheetId: sheetID,
-    range: sheetName + '!D' + row,
-    valueInputOption: 'USER_ENTERED',
-    resource: { values: prNames },
-  };
+    const updateOptionsForCommercialBr = {
+      spreadsheetId: sheetID,
+      range: sheetName + '!' + rangeForBr[0] + ':' + rangeForBr[1],
+      valueInputOption: 'USER_ENTERED',
+      resource: { values: commercialBr },
+    };
 
-  const updateOptionsForCommercialBr = {
-    spreadsheetId: sheetID,
-    range: sheetName + '!A' + row,
-    valueInputOption: 'USER_ENTERED',
-    resource: { values: commercialBr },
-  };
+    await gsapi.spreadsheets.values.update(updateOptionsForPrNames);
+    await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
+  } else {
+    const updateOptionsForPrNames = {
+      spreadsheetId: sheetID,
+      range: sheetName + '!D' + row,
+      valueInputOption: 'USER_ENTERED',
+      resource: { values: prNames },
+    };
 
-  await gsapi.spreadsheets.values.update(updateOptionsForPrNames);
-  await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
+    const updateOptionsForCommercialBr = {
+      spreadsheetId: sheetID,
+      range: sheetName + '!A' + row,
+      valueInputOption: 'USER_ENTERED',
+      resource: { values: commercialBr },
+    };
+
+    await gsapi.spreadsheets.values.update(updateOptionsForPrNames);
+    await gsapi.spreadsheets.values.update(updateOptionsForCommercialBr);
+  }
 }
 
 module.exports = { insertDataFromDB2YourHopeIntoSpreadSheet, fetchAfterEdit };
