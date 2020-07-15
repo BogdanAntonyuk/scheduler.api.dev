@@ -5,7 +5,7 @@ const moment = require('moment-timezone');
 const keys = require('../config/keys.json');
 const db = require('./utils/db.js');
 const {
-  insertDataFromDB2YourHopeIntooSpreadSheet,
+  insertDataFromDB2YourHopeIntoSpreadSheet,
   fetchAfterEdit,
 } = require('./insertDataIntoSpreadSheets.js');
 const { getYYYmmDD, getDataFromSpreadSheet } = require('./utils/dataFromSheets.js');
@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/fetchFromArchive', async (req, res) => {
-  await insertDataFromDB2YourHopeIntooSpreadSheet(client, req.body.sheetId, req.body.sheetName);
+  await insertDataFromDB2YourHopeIntoSpreadSheet(req.body.sheetId, req.body.sheetName);
 
   res.send('Success!');
 });
