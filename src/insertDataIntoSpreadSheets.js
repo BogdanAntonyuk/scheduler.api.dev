@@ -56,7 +56,7 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 			prNames.push(
 				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!')
 			);
-			commercialBr.push(new Array('Not for broadcast!!!'));
+			commercialBr.push(new Array(''));
 		} else {
 			commercialBr.push(new Array(fetchedData[j].timeline_break));
 			prNames.push(
@@ -145,7 +145,7 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 			prNames.push(
 				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!')
 			);
-			commercialBr.push(new Array('Not for broadcast!!!'));
+			commercialBr.push(new Array(''));
 		} else {
 			commercialBr.push(new Array(fetchedData[j].timeline_break));
 			prNames.push(
