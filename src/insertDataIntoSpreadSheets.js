@@ -34,12 +34,16 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 	}
 	for (j = 0; j < fetchedData.length; j++) {
 		if (fetchedData[j].error) {
-			prNames.push(new Array(fetchedData[j].error.message));
-			commercialBr.push(new Array());
-		} else if (descr[j].error) {
-			descr[j].error.message;
+			prNames.push(
+				new Array(
+					fetchedData[j].error.message,
+					fetchedData[j].error.message,
+					fetchedData[j].error.message
+				)
+			);
+			commercialBr.push(new Array(''));
 		} else if (!fetchedData[j].timeline_break) {
-			commercialBr.push(new Array());
+			commercialBr.push(new Array(''));
 			prNames.push(
 				new Array(
 					fetchedData[j].show.title,
@@ -49,8 +53,10 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 				)
 			);
 		} else if (fetchedData[j].broadcast_reject) {
-			prNames.push(new Array('Not for broadcast!!!'));
-			commercialBr.push(new Array());
+			prNames.push(
+				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!')
+			);
+			commercialBr.push(new Array('Not for broadcast!!!'));
 		} else {
 			commercialBr.push(new Array(fetchedData[j].timeline_break));
 			prNames.push(
@@ -117,12 +123,16 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 	}
 	for (j = 0; j < fetchedData.length; j++) {
 		if (fetchedData[j].error) {
-			prNames.push(new Array(fetchedData[j].error.message));
-			commercialBr.push(new Array());
-		} else if (descr[j].error) {
-			descr[j].error.message;
+			prNames.push(
+				new Array(
+					fetchedData[j].error.message,
+					fetchedData[j].error.message,
+					fetchedData[j].error.message
+				)
+			);
+			commercialBr.push(new Array(''));
 		} else if (!fetchedData[j].timeline_break) {
-			commercialBr.push(new Array());
+			commercialBr.push(new Array(''));
 			prNames.push(
 				new Array(
 					fetchedData[j].show.title,
@@ -131,6 +141,11 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 					fetchedData[j].duration
 				)
 			);
+		} else if (fetchedData[j].broadcast_reject) {
+			prNames.push(
+				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!')
+			);
+			commercialBr.push(new Array('Not for broadcast!!!'));
 		} else {
 			commercialBr.push(new Array(fetchedData[j].timeline_break));
 			prNames.push(
