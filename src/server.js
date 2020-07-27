@@ -1,4 +1,4 @@
-// require('@google-cloud/debug-agent').start({ serviceContext: { enableCanary: false } });
+require('@google-cloud/debug-agent').start({ serviceContext: { enableCanary: false } });
 const express = require('express');
 const { google } = require('googleapis');
 const moment = require('moment-timezone');
