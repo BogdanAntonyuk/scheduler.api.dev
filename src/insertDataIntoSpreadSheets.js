@@ -38,7 +38,8 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 				new Array(
 					fetchedData[j].error.message,
 					fetchedData[j].error.message,
-					fetchedData[j].error.message
+					fetchedData[j].error.message,
+					''
 				)
 			);
 			commercialBr.push(new Array(''));
@@ -54,7 +55,7 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 			);
 		} else if (fetchedData[j].broadcast_reject) {
 			prNames.push(
-				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!')
+				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!', '')
 			);
 			commercialBr.push(new Array(''));
 		} else {
@@ -127,7 +128,8 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 				new Array(
 					fetchedData[j].error.message,
 					fetchedData[j].error.message,
-					fetchedData[j].error.message
+					fetchedData[j].error.message,
+					''
 				)
 			);
 			commercialBr.push(new Array(''));
@@ -143,7 +145,7 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 			);
 		} else if (fetchedData[j].broadcast_reject) {
 			prNames.push(
-				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!')
+				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!', '')
 			);
 			commercialBr.push(new Array(''));
 		} else {

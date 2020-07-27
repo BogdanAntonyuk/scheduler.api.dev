@@ -12,7 +12,7 @@ let getYYYmmDD = async function dayFetch(cl, sheetID, sheetName) {
 
 	const opt = {
 		spreadsheetId: sheetID,
-		range: sheetName + '!B60',
+		range: sheetName + '!A60',
 	};
 	const rawData = await gsapi.spreadsheets.values.get(opt);
 	const mediumData = rawData.data.values;
