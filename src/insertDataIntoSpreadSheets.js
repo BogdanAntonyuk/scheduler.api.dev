@@ -43,6 +43,16 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 				)
 			);
 			commercialBr.push(new Array(''));
+		} else if (!fetchedData[j].timeline_break && !fetchedData[j].duration) {
+			commercialBr.push(new Array(''));
+			prNames.push(
+				new Array(
+					fetchedData[j].show.title,
+					descr[j].description.short,
+					fetchedData[j].title,
+					''
+				)
+			);
 		} else if (!fetchedData[j].timeline_break) {
 			commercialBr.push(new Array(''));
 			prNames.push(
@@ -133,6 +143,16 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 				)
 			);
 			commercialBr.push(new Array(''));
+		} else if (!fetchedData[j].timeline_break && !fetchedData[j].duration) {
+			commercialBr.push(new Array(''));
+			prNames.push(
+				new Array(
+					fetchedData[j].show.title,
+					descr[j].description.short,
+					fetchedData[j].title,
+					''
+				)
+			);
 		} else if (!fetchedData[j].timeline_break) {
 			commercialBr.push(new Array(''));
 			prNames.push(
