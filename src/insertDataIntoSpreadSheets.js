@@ -43,6 +43,11 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 				)
 			);
 			commercialBr.push(new Array(''));
+		} else if (fetchedData[j].broadcast_reject) {
+			prNames.push(
+				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!', '')
+			);
+			commercialBr.push(new Array(''));
 		} else if (!fetchedData[j].timeline_break && !fetchedData[j].duration) {
 			commercialBr.push(new Array(''));
 			prNames.push(
@@ -53,11 +58,6 @@ async function insertDataFromDB2YourHopeIntoSpreadSheet(sheetID, sheetName) {
 					''
 				)
 			);
-		} else if (fetchedData[j].broadcast_reject) {
-			prNames.push(
-				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!', '')
-			);
-			commercialBr.push(new Array(''));
 		} else if (!fetchedData[j].timeline_break) {
 			commercialBr.push(new Array(''));
 			prNames.push(
@@ -143,6 +143,11 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 				)
 			);
 			commercialBr.push(new Array(''));
+		} else if (fetchedData[j].broadcast_reject) {
+			prNames.push(
+				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!', '')
+			);
+			commercialBr.push(new Array(''));
 		} else if (!fetchedData[j].timeline_break && !fetchedData[j].duration) {
 			commercialBr.push(new Array(''));
 			prNames.push(
@@ -153,11 +158,6 @@ async function fetchAfterEdit(sheetID, sheetName, range) {
 					''
 				)
 			);
-		} else if (fetchedData[j].broadcast_reject) {
-			prNames.push(
-				new Array('Not for broadcast!!!', 'Not for broadcast!!!', 'Not for broadcast!!!', '')
-			);
-			commercialBr.push(new Array(''));
 		} else if (!fetchedData[j].timeline_break) {
 			commercialBr.push(new Array(''));
 			prNames.push(
